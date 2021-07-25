@@ -14,7 +14,6 @@ public:
 		this->_columnCount = columnCount;
 
 		this->_rows = (RgbMatrixLedRow **)malloc(rowCount * sizeof(RgbMatrixLedRow *));
-		this->_columns = (MatrixLedList **)malloc(columnCount * sizeof(MatrixLedList *));
 	}
 
 	RgbMatrix *WithRowAt(RgbMatrixLedRow *row, uint8_t index)
@@ -24,23 +23,10 @@ public:
 		return this;
 	}
 
-	RgbMatrix *WithColumnAt(MatrixLedList *row, uint8_t index)
-	{
-		this->CheckIndex(index, this->_columnCount);
-		this->_columns[index] = row;
-		return this;
-	}
-
 	RgbMatrixLedRow GetRowAt(uint8_t index)
 	{
 		this->CheckIndex(index, this->_rowCount);
 		return *this->_rows[index];
-	}
-
-	MatrixLedList GetColumnAt(uint8_t index)
-	{
-		this->CheckIndex(index, this->_columnCount);
-		return *this->_columns[index];
 	}
 
 private:
@@ -56,7 +42,6 @@ private:
 	uint8_t _columnCount;
 
 	RgbMatrixLedRow **_rows;
-	MatrixLedList **_columns;
 };
 
 #endif
